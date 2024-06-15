@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <SwitchTab sortedData={sortedData} 
+      <SwitchTab
         filteredData={filteredData} 
         toggleLike={toggleLike} 
         sortType={sortType} 
