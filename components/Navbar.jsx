@@ -1,32 +1,46 @@
 'use client'
 import React, { useState } from 'react'
 import Image from 'next/image'
-import downArrow from '../assets/arrow.png'
-import Logo from '../assets/logo.png'
+import downArrow from '../public/arrow.png'
+import Logo from '../public/logo.png'
+import { categories } from '../lib/constants' // Ensure this is correctly imported
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isHover, setIsHove] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    if (query.length > 0) {
+      const filteredSuggestions = categories.filter(category =>
+        category.toLowerCase().includes(query.toLowerCase())
+      );
+      setSuggestions(filteredSuggestions);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchQuery(suggestion);
+    setSuggestions([]);
+  };
+
   return (
     <>
       <nav className='hidden mx-8 my-4 md:flex items-center justify-between'>
-
         {/* left */}
         <div className='flex space-x-7'>
           <div className='flex space-x-1'>
             <p className='font-semibold hover:text-[#A2A2A2]'>Find Designers</p>
             <Image src={downArrow} alt='down arrow' width={20} />
-
-            {/* {isHover && (
-            <div className='border border-[#A2A2A2] w-10 h-10' onClick={() => onmouseenter(setIsHove(true))}>
-
-            </div>
-          )} */}
           </div>
           <div>
             <p className='font-semibold hover:text-[#A2A2A2]'>Inspiration</p>
@@ -51,7 +65,13 @@ function Navbar() {
         {/* right - search, login/signup */}
         <div className='flex space-x-4'>
           <div className="relative flex items-center w-full max-w-md bg-white rounded-full overflow-hidden">
-            <input type='text' className="w-[277px] h-[45px] bg-[#ebebf2] rounded-full border-[#FFECC6] pl-10 pr-4 py-2 placeholder:pl-2 font-Lato font-normal text-[14px] leading-[18px] text-[#868686] hover:bg-white hover:border-[6px] hover:border-[#e9e3ea]" placeholder='Search...' />
+            <input
+              type='text'
+              className="w-[277px] h-[45px] bg-[#ebebf2] rounded-full border-[#FFECC6] pl-10 pr-4 py-2 placeholder:pl-2 font-Lato font-normal text-[14px] leading-[18px] text-[#868686] hover:bg-white hover:border-[6px] hover:border-[#e9e3ea]"
+              placeholder='Search...'
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
             <div className="absolute left-4">
               <svg
                 width={16}
@@ -67,6 +87,19 @@ function Navbar() {
                 />
               </svg>
             </div>
+            {suggestions.length > 0 && (
+              <ul className="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-md mt-1 z-10">
+                {suggestions.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
           <div>
             <button className='w-32 py-2 bg-[#cc57d8] text-white font-semibold rounded-md'>Sign up</button>
@@ -114,7 +147,6 @@ function Navbar() {
               <p>Find Designers</p>
             </div>
             <div className='flex space-x-7'>
-
               {/* vertical line */}
               <div className='w-[0.5px] h-40 text-[#e7e7e9] bg-[#e7e7e9]'></div>
 
@@ -137,7 +169,6 @@ function Navbar() {
               <p>Courses</p>
             </div>
             <div className='flex space-x-7'>
-
               {/* vertical line */}
               <div className='w-[0.5px] h-[210px] text-[#e7e7e9] bg-[#e7e7e9]'></div>
 
@@ -165,18 +196,7 @@ function Navbar() {
             </div>
           </div>
         </div>
-        {/* <div className="bg-white w-full px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <p className='block py-2 px-4 text-sm font-semibold text-gray-700 hover:bg-gray-200'>Find Designers</p>
-          <p className='block py-2 px-4 text-sm font-semibold text-gray-700 hover:bg-gray-200'>Inspiration</p>
-          <p className='block py-2 px-4 text-sm font-semibold text-gray-700 hover:bg-gray-200'>Courses</p>
-          <p className='block py-2 px-4 text-sm font-semibold text-gray-700 hover:bg-gray-200'>Jobs</p>
-          <p className='block py-2 px-4 text-sm font-semibold text-gray-700 hover:bg-gray-200'>Go Pro</p>
-        </div> */}
       </div>
-
-      {/* {isOpen && (
-      
-    )} */}
     </>
   )
 }

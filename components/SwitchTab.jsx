@@ -25,10 +25,7 @@ function SwitchTab() {
             <div className='flex flex-col md:flex-row justify-between'>
                 {/* Tag Filter */}
                 <div className="mb-4 flex items-center justify-center">
-                    <select
-                        className="p-2 border border-[#E4E4E4] rounded-md"
-                        value={tagFilter}
-                        onChange={(e) => setTagFilter(e.target.value)}
+                    <select className="p-2 border border-[#E4E4E4] rounded-md" value={tagFilter} onChange={(e) => setTagFilter(e.target.value)}
                     >
                         <option value="all">All</option>
                         <option value="new">New</option>
