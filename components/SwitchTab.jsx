@@ -9,8 +9,7 @@ function SwitchTab() {
     const [likedImages, setLikedImages] = useState({});
 
     const filteredData = info.filter(item => {
-        return (tagFilter === 'all' || item.tag === tagFilter) &&
-               (categoryFilter === 'Discover' || item.category === categoryFilter);
+        return (tagFilter === 'all' || item.tag === tagFilter) && (categoryFilter === 'Discover' || item.category === categoryFilter);
     });
 
     const toggleLike = (id) => {
@@ -25,8 +24,7 @@ function SwitchTab() {
             <div className='flex flex-col md:flex-row justify-between'>
                 {/* Tag Filter */}
                 <div className="mb-4 flex items-center justify-center">
-                    <select className="p-2 border border-[#E4E4E4] rounded-md" value={tagFilter} onChange={(e) => setTagFilter(e.target.value)}
-                    >
+                    <select className="p-2 border border-[#E4E4E4] rounded-md" value={tagFilter} onChange={(e) => setTagFilter(e.target.value)}>
                         <option value="all">All</option>
                         <option value="new">New</option>
                         <option value="popular">Popular</option>
@@ -39,9 +37,7 @@ function SwitchTab() {
                     {categories.map((item, index) => (
                         <button
                             key={index}
-                            className={`p-2 font-semibold ${
-                                categoryFilter === item ? 'border rounded-full bg-gray-200 px-4' : ''
-                            }`}
+                            className={`p-2 font-semibold ${categoryFilter === item ? 'border rounded-full bg-gray-200 px-4' : ''}`}
                             onClick={() => setCategoryFilter(item)}
                         >
                             {item}
@@ -55,29 +51,36 @@ function SwitchTab() {
             <div className="flex flex-wrap items-center justify-between">
                 {filteredData.length > 0 ? (
                     filteredData.map((item, index) => (
-                        <div key={index} className='mt-8'>
-                            <div className='rounded-[14px]'>
+                        <div key={index} className='relative mt-8 group w-[400px]'>
+                            <div className='rounded-[14px] overflow-hidden relative'>
                                 <Image src={item.image} alt={item.category} width={400} height={148}/>
+                                <div className='absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 p-4 flex justify-between'>
+                                    <p>{item.description}</p>
+                                    <button onClick={() => toggleLike(item.id)} className='bg-white rounded-full w-20 h-10'>
+                                        {likedImages[item.id] ? (
+                                            <span style={{ fontSize: '30px', color: 'red' }}>&hearts;</span>
+                                        ) : (
+                                            <span style={{ fontSize: '30px', color: 'grey' }}>&hearts;</span>
+                                        )}
+                                    </button>
+                                </div>
                             </div>
                             <div className='mt-2 flex justify-between items-center'>
+                                {/* title */}
+                                <div className='font-semibold'>
+                                    <p>{item.title}</p>
+                                </div>
 
-                              {/* title */}
-                              <div className='font-semibold'>
-                                <p>{item.title}</p>
-                              </div>
-
-                              {/* like */}
-                              <div>
-                                <button
-                                    onClick={() => toggleLike(item.id)}
-                                >
-                                    {likedImages[item.id] ? (
-                                        <span style={{ fontSize: '50px', color: 'red' }}>&hearts;</span>
-                                    ) : (
-                                        <span style={{ fontSize: '50px', color: 'grey' }}>&hearts;</span>
-                                    )}
-                                </button>
-                              </div>
+                                {/* like */}
+                                <div>
+                                    <button onClick={() => toggleLike(item.id)}>
+                                        {likedImages[item.id] ? (
+                                            <span style={{ fontSize: '30px', color: 'red' }}>&hearts;</span>
+                                        ) : (
+                                            <span style={{ fontSize: '30px', color: 'grey' }}>&hearts;</span>
+                                        )}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     ))

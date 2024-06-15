@@ -3,35 +3,15 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import downArrow from '../public/arrow.png'
 import Logo from '../public/logo.png'
-import { categories } from '../lib/constants' // Ensure this is correctly imported
+import { categories } from '../lib/constants'
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSearchChange = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-
-    if (query.length > 0) {
-      const filteredSuggestions = categories.filter(category =>
-        category.toLowerCase().includes(query.toLowerCase())
-      );
-      setSuggestions(filteredSuggestions);
-    } else {
-      setSuggestions([]);
-    }
-  };
-
-  const handleSuggestionClick = (suggestion) => {
-    setSearchQuery(suggestion);
-    setSuggestions([]);
-  };
 
   return (
     <>
@@ -69,8 +49,6 @@ function Navbar() {
               type='text'
               className="w-[277px] h-[45px] bg-[#ebebf2] rounded-full border-[#FFECC6] pl-10 pr-4 py-2 placeholder:pl-2 font-Lato font-normal text-[14px] leading-[18px] text-[#868686] hover:bg-white hover:border-[6px] hover:border-[#e9e3ea]"
               placeholder='Search...'
-              value={searchQuery}
-              onChange={handleSearchChange}
             />
             <div className="absolute left-4">
               <svg
@@ -87,19 +65,6 @@ function Navbar() {
                 />
               </svg>
             </div>
-            {suggestions.length > 0 && (
-              <ul className="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-md mt-1 z-10">
-                {suggestions.map((suggestion, index) => (
-                  <li
-                    key={index}
-                    className="px-4 py-2 cursor-pointer hover:bg-gray-100"
-                    onClick={() => handleSuggestionClick(suggestion)}
-                  >
-                    {suggestion}
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
           <div>
             <button className='w-32 py-2 bg-[#cc57d8] text-white font-semibold rounded-md'>Sign up</button>
