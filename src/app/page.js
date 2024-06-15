@@ -1,9 +1,9 @@
 'use client'
 import { useState } from 'react';
-import ContentTabs from '../../components/ContentTabs';
-import CategoryMenu from '../../components/CategoryMenu';
-import SearchBar from '../../components/SearchBar';
-import ImageGrid from '../../components/ImageGrid';
+// import ContentTabs from '../../components/ContentTabs';
+// import CategoryMenu from '../../components/CategoryMenu';
+// import SearchBar from '../../components/SearchBar';
+// import ImageGrid from '../../components/ImageGrid';
 import Navbar from '../../components/Navbar';
 
 export default function Home() {
