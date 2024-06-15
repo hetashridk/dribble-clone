@@ -3,28 +3,24 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { categories, info } from '../lib/constants';
 
-function SwitchTab() {
-    const [tagFilter, setTagFilter] = useState('all');
-    const [categoryFilter, setCategoryFilter] = useState('Discover');
-    const [likedImages, setLikedImages] = useState({});
+function SwitchTab({
+    sortedData,
+    filteredData,
+    toggleLike,
+    sortType,
+    setSortType,
+    categoryFilter,
+    setCategoryFilter,
+    likedImages
+}) {
 
-    const filteredData = info.filter(item => {
-        return (tagFilter === 'all' || item.tag === tagFilter) && (categoryFilter === 'Discover' || item.category === categoryFilter);
-    });
-
-    const toggleLike = (id) => {
-        setLikedImages(prev => ({
-            ...prev,
-            [id]: !prev[id]
-        }));
-    };
 
     return (
         <div className="mx-8 my-4">
             <div className='flex flex-col md:flex-row justify-between'>
-                {/* Tag Filter */}
+                {/* Sort Type */}
                 <div className="mb-4 flex items-center justify-center">
-                    <select className="p-2 border border-[#E4E4E4] rounded-md" value={tagFilter} onChange={(e) => setTagFilter(e.target.value)}>
+                    <select className="p-2 border border-[#E4E4E4] rounded-md" value={sortType} onChange={(e) => setSortType(e.target.value)}>
                         <option value="all">All</option>
                         <option value="new">New</option>
                         <option value="popular">Popular</option>
@@ -86,7 +82,7 @@ function SwitchTab() {
                     ))
                 ) : (
                     <div className='mt-8 w-full text-center text-gray-500'>
-                        No results found
+                        No results found according to filter
                     </div>
                 )}
             </div>

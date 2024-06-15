@@ -19,21 +19,21 @@ function Navbar() {
         {/* left */}
         <div className='flex space-x-7'>
           <div className='flex space-x-1'>
-            <p className='font-semibold hover:text-[#A2A2A2]'>Find Designers</p>
+            <p className='font-semibold hover:text-[#A2A2A2] cursor-pointer'>Find Designers</p>
             <Image src={downArrow} alt='down arrow' width={20} />
           </div>
           <div>
-            <p className='font-semibold hover:text-[#A2A2A2]'>Inspiration</p>
+            <p className='font-semibold hover:text-[#A2A2A2] cursor-pointer'>Inspiration</p>
           </div>
           <div className='flex space-x-1'>
-            <p className='font-semibold hover:text-[#A2A2A2]'>Courses</p>
+            <p className='font-semibold hover:text-[#A2A2A2] cursor-pointer'>Courses</p>
             <Image src={downArrow} alt='down arrow' width={20} />
           </div>
           <div>
-            <p className='font-semibold hover:text-[#A2A2A2]'>Jobs</p>
+            <p className='font-semibold hover:text-[#A2A2A2] cursor-pointer'>Jobs</p>
           </div>
           <div>
-            <p className='font-semibold hover:text-[#A2A2A2]'>Go Pro</p>
+            <p className='font-semibold hover:text-[#A2A2A2] cursor-pointer'>Go Pro</p>
           </div>
         </div>
 
