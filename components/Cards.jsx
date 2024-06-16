@@ -8,7 +8,7 @@ import { itemVariants } from '../lib/constants'
 
 function Cards({ filteredData, toggleLike, likedImageList }) {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
+        <div className="p-4 md:p-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
             {filteredData.length > 0 ? (
                 filteredData.map((item, index) => (
                     <motion.div 
