@@ -7,7 +7,7 @@ function Category({ categoryFilter, setCategoryFilter }) {
             {categories.map((item, index) => (
                 <button
                     key={index}
-                    className={`p-2 font-semibold ${categoryFilter === item ? 'border rounded-full bg-gray-200 px-4' : ''}`}
+                    className={`p-2 font-semibold hover:bg-[#779ffc] hover:rounded-full ${categoryFilter === item ? 'border rounded-full bg-[#cfddff] px-4' : ''}`}
                     onClick={() => setCategoryFilter(item)}
                 >
                     {item}
