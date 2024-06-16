@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import downArrow from '../public/arrow.png'
 import Logo from '../public/logo.png'
-import { categories } from '../lib/constants'
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,10 +11,9 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
 
-
   return (
     <>
-      <nav className='hidden mx-8 my-4 md:flex items-center justify-between'>
+      <nav className='hidden mx-8 my-4 lg:flex items-center justify-between'>
         {/* left */}
         <div className='flex space-x-7'>
           <div className='flex space-x-1'>
@@ -67,11 +65,11 @@ function Navbar() {
             </div>
           </div>
           <div>
-            <button className='w-32 py-2 bg-[#cc57d8] text-white font-semibold rounded-md'>Sign up</button>
+            <button className='w-32 py-2 bg-black text-white font-semibold rounded-full'>Sign up</button>
           </div>
         </div>
       </nav>
-      <div className='md:hidden flex items-center m-4'>
+      <div className='flex lg:hidden items-center m-4'>
         <div className='flex space-x-4'>
           <button onClick={toggleMenu}>
             <svg className="w-6 h-6 text-gray-500" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -104,19 +102,21 @@ function Navbar() {
           </div>
         </div>
       </div>
-      <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
+      <div className={`lg:hidden transition-all duration-1000 ease-in-out ${isOpen ? 'max-h-screen' : 'max-h-0 overflow-hidden'}`}>
         <div className='bg-white'>
           <div className='w-full h-[0.5px] text-[#A2A2A2] bg-[#A2A2A2]'></div>
           <div className='ml-10 mt-8 space-y-5'>
-            <div className='font-semibold text-[17px]'>
+            <div className='font-semibold text-[17px] transition-transform duration-300 ease-in-out'>
               <p>Find Designers</p>
             </div>
             <div className='flex space-x-7'>
               {/* vertical line */}
-              <div className='w-[0.5px] h-40 text-[#e7e7e9] bg-[#e7e7e9]'></div>
+              <div className={`transition-all duration-300 ease-in-out ${isOpen ? 'h-10' : 'h-0'}`}>
+                <div className='w-[0.5px] h-40 text-[#e7e7e9] bg-[#e7e7e9]'></div>
+              </div>
 
               {/* text */}
-              <div className='space-y-5 mt-4'>
+              <div className='space-y-5 mt-4 transition-transform duration-300 ease-in-out'>
                 <div>
                   <p className='font-medium text-[15px]'>Designer search</p>
                   <p className='font-normal text-[12px] text-[#3d3d4e] leading-5'>Quickly find your next designer</p>
@@ -127,18 +127,20 @@ function Navbar() {
                 </div>
               </div>
             </div>
-            <div className='font-semibold text-[17px]'>
+            <div className='font-semibold text-[17px] transition-transform duration-300 ease-in-out'>
               <p>Inspiration</p>
             </div>
-            <div className='font-semibold text-[17px]'>
+            <div className='font-semibold text-[17px] transition-transform duration-300 ease-in-out'>
               <p>Courses</p>
             </div>
             <div className='flex space-x-7'>
               {/* vertical line */}
-              <div className='w-[0.5px] h-[210px] text-[#e7e7e9] bg-[#e7e7e9]'></div>
+              <div className={`transition-all duration-300 ease-in-out ${isOpen ? 'h-[210px]' : 'h-0'}`}>
+                <div className='w-[0.5px] h-[210px] text-[#e7e7e9] bg-[#e7e7e9]'></div>
+              </div>
 
               {/* text */}
-              <div className='space-y-5 mt-4'>
+              <div className='space-y-5 mt-4 transition-transform duration-300 ease-in-out'>
                 <div>
                   <p className='font-medium text-[15px]'>UX Diploma</p>
                   <p className='font-normal text-[12px] text-[#3d3d4e] leading-5'>Learn UX from scratch in 6 months</p>
@@ -153,10 +155,10 @@ function Navbar() {
                 </div>
               </div>
             </div>
-            <div className='font-semibold text-[17px]'>
+            <div className='font-semibold text-[17px] transition-transform duration-300 ease-in-out'>
               <p>Jobs</p>
             </div>
-            <div className='font-semibold text-[17px]'>
+            <div className='font-semibold text-[17px] transition-transform duration-300 ease-in-out'>
               <p>Go Pro</p>
             </div>
           </div>

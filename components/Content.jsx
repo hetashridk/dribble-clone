@@ -4,14 +4,14 @@ import SortTag from './SortTag';
 import Category from './Category';
 import Cards from './Cards';
 
-function SwitchTab({
+function Content({
     filteredData,
     toggleLike,
     sortType,
     setSortType,
     categoryFilter,
     setCategoryFilter,
-    likedImages
+    likedImageList
 }) {
 
 
@@ -27,9 +27,9 @@ function SwitchTab({
                 {/* right */}
                 <div></div>
             </div>
-            <Cards filteredData={filteredData} toggleLike={toggleLike} likedImages={likedImages}/>
+            <Cards filteredData={filteredData} toggleLike={toggleLike} likedImageList={likedImageList}/>
         </div>
     )
 }
 
-export default SwitchTab;
+export default Content;
