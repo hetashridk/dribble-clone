@@ -26,7 +26,7 @@ function Cards({ filteredData, toggleLike, likedImageList }) {
                             <Image src={item.image} alt={item.category} width={400} height={148} className='w-full object-cover' />
                             <div className='absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 p-4 flex justify-between'>
                                 <p className='text-sm sm:text-base'>{item.description}</p>
-                                <div className='bg-white rounded-full w-20 h-10 flex items-center justify-center'>
+                                <div className='bg-white rounded-full w-10 h-10 flex items-center justify-center'>
                                     <LikedImages likedImageList={likedImageList} toggleLike={toggleLike} item={item} />
                                 </div>
                             </div>
